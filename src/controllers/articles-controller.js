@@ -190,14 +190,15 @@ exports.getBlockeds = (req, res) => {
                 payloadJson = JSON.parse(payload.stdout);
 
                 baseUrl = `${req.protocol}://${req.get('Host')}${req.originalUrl}/${payloadJson.header.titleURI}`;
+                baseUrl = baseUrl.replace('/blockeds', '');
                 
                 lista.total = lista.articles.push({
                     title: payloadJson.header.title,
                     titleURI: payloadJson.header.titleURI,
                     titleId: payloadJson.header.hash,
                     postId: blockeds[i],
+                    body: payloadJson.body,
                     links: [
-                        { href: `${baseUrl}/${blockeds[i]}`, rel: 'self', method: 'GET' },
                         { href: baseUrl, rel: 'article', method: 'GET'},
                         { href: `${baseUrl}/like/${blockeds[i]}`, rel: 'like', method: 'POST'},
                         { href: `${baseUrl}/dislike/${blockeds[i]}`, rel: 'dislike', method: 'POST'},
