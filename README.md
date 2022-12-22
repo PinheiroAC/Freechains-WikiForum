@@ -68,3 +68,19 @@ Além disso, as requisições não contam com estrutura de captura e tratamento 
 #### Ferramentas
 
 O protótipo foi desenvolvido como uma API RESTful com Nodejs + express e, para otimizar o armazenamento dos artigos, utililzamos o pacote [diff-match-patch](https://www.npmjs.com/package/diff-match-patch) para, a cada aualização/edição de um artigo, armazenar, apenas, as diferenças introduzidas a cada edição.
+<hr>
+
+## Como executar
+
+#### Pré-requisitos
+
+- Instalar o [Freechains](https://github.com/Freechains/README#install).<br>
+- Instalar o [Node.js](https://nodejs.org/pt-br/).<br>
+- Clonar o projeto [Freechains-WikiForum](https://github.com/PinheiroAC/Freechains-WikiForum)
+
+#### Rodar o protótipo
+
+Iniciar o freechains e, no diretório do projeto, executar: `npm run dev` e teremos o protótipo rodando na porta 5000.<br>
+
+A API pode ser executada no [Postman](https://www.postman.com/downloads/) com esta [collection](https://github.com/PinheiroAC/Freechains-WikiForum/blob/master/src/config/WIKI.postman_collection.json).
+
