@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "15861ce7-cdb5-4dd9-825f-7c33c73f1b1d",
+		"name": "WIKI",
+		"description": "# P2P - Protótipo de aplicação P2P usando o sistema de reputação do [Freechains](https://github.com/Freechains/README)\n\nProtótipo da atividade 3.5 da Disciplina Tópicos Especiais em Redes de Telecomunicações - Sistemas Peer-to-Peer. <br><br>\n\nAtividade 3.6 - [proj] Crie uma aplicação P2P usando o sistema de reputação do Freechains... \nA aplicação deve:<br>\n- se adaptar às regras do protocolo, que não deve ser alterado;<br>\n-  operar em um ambiente não permissionado, no qual os usuários podem entrar e sair (incluindo os pioneiros);<br>\n- ser mais sofisticada que um simples fórum público de mensagens nos quais os usuários avaliam postagens.<br>\n<hr>\n\n## Protótipo\n\nTrata-se de uma API REST cujo objetivo é fornecer as requisições que o front-end da aplicação deve consumir para ser capaz de fornecer suas funcionalidades ao usuário final.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Titles",
+			"item": [
+				{
+					"name": "All Titles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One Title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/{{titleURI}}/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"{{titleURI}}",
+								""
+							]
+						},
+						"description": "Obtém a versão atual de um artigo."
+					},
+					"response": []
+				},
+				{
+					"name": "Any article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/{{titleURI}}/{{postId}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"{{titleURI}}",
+								"{{postId}}"
+							]
+						},
+						"description": "Obtém um artigo, atualizando-o até a postagem indicada em postId."
+					},
+					"response": []
+				},
+				{
+					"name": "New article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pvtkey\": \"D927783350A9A30D4FEF0A5FAACD0278536F10E8DEA7384E97FDDE9302E4A9E2B626B1190C0EA97FDDC51D37C64DFABBA6B7482756782B8E6C20C76EE3500B2B\" ,\r\n  \"article\": {\r\n      \"title\": \"John Backus\",\r\n      \"body\": \"John Warner Backus (Filadélfia, 3 de dezembro de 1924 — Ashland, 17 de março de 2007) foi um cientista da computação estadunidense. Conhecido por criar a primeira linguagem de programação de alto nível - o Fortran - a notação BNF e o conceito de programação em nível de funções. \\nRecebeu em 1977 o Prêmio Turing, por suas contribuições para o desenvolvimento de sistemas de programação de alto nível, principalmente por seu trabalho no Fortran e por publicações sobre métodos formais na especificação de linguagens de programação.\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit article",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pvtkey\": \"D927783350A9A30D4FEF0A5FAACD0278536F10E8DEA7384E97FDDE9302E4A9E2B626B1190C0EA97FDDC51D37C64DFABBA6B7482756782B8E6C20C76EE3500B2B\" ,\r\n  \"article\": {\r\n      \"title\": \"John Backus\",\r\n      \"titleURI\":  \"John%20Backus\",\r\n      \"titleId\": \"658a5078ff3cfbfbf68e7aeebaac3d39efeca4bf8c2639129202cb388af888c9\",\r\n      \"back\": \"7_D3E65A7835CEF0DE03863875950D4178A2BDA8EEBADDC393B252F3B7EB88AC8B\",\r\n      \"body\": \"@@ -272,16 +272,205 @@\\n un%C3%A7%C3%B5es. \\n+Durante a segunda metade da d%C3%A9cada de 1950, John serviu comit%C3%AAs internacionais para desenvolver o ALGOL 58 e o ALGOL 60, que tornou-se rapidamente o padr%C3%A3o para a publica%C3%A7%C3%A3o de algoritmos. \\n %0ARecebeu\\n\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/{{titleURI}}/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"{{titleURI}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Blockeds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/blockeds",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"blockeds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like title",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pvtkey\": \"D927783350A9A30D4FEF0A5FAACD0278536F10E8DEA7384E97FDDE9302E4A9E2B626B1190C0EA97FDDC51D37C64DFABBA6B7482756782B8E6C20C76EE3500B2B\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/{{titleURI}}/like",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"{{titleURI}}",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like any article",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pvtkey\": \"D927783350A9A30D4FEF0A5FAACD0278536F10E8DEA7384E97FDDE9302E4A9E2B626B1190C0EA97FDDC51D37C64DFABBA6B7482756782B8E6C20C76EE3500B2B\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/{{titleURI}}/like/{{postId}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"{{titleURI}}",
+								"like",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dislike title",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pvtkey\": \"D927783350A9A30D4FEF0A5FAACD0278536F10E8DEA7384E97FDDE9302E4A9E2B626B1190C0EA97FDDC51D37C64DFABBA6B7482756782B8E6C20C76EE3500B2B\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/{{titleURI}}/dislike",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"{{titleURI}}",
+								"dislike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dislike any article",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pvtkey\": \"D927783350A9A30D4FEF0A5FAACD0278536F10E8DEA7384E97FDDE9302E4A9E2B626B1190C0EA97FDDC51D37C64DFABBA6B7482756782B8E6C20C76EE3500B2B\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/{{CHAIN}}/articles/{{titleURI}}/dislike/{{postId}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"{{CHAIN}}",
+								"articles",
+								"{{titleURI}}",
+								"dislike",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Requisições responsáveis por suportar os serviços de manutenção e tratamento de artigos:<br>\n\n- Criar, Listar, Editar, Remover e Ler artigos (o CRUD de artigos);<br>\n- Interagir: Curtir e “Não Curtir”;<br>\n- Validar: permitir que usuários com reputação possam dar tratamento às postagem de usuários sem reputação;<br>\n- Manter: permitir que usuários com reputação possam tratamr conflitos de mesclagem de conteúdo, colisões nos títulos dos artigos e preservar a qualidade dos artigos.<br><br>"
+		},
+		{
+			"name": "Tools",
+			"item": [
+				{
+					"name": "Keys",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passphrase\": \"Nova senha forte!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/keys",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"keys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Text Patch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"originalText\": \"John\",\r\n    \"newText\": \"John!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/patch",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"patch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wiki",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chain\": \"#Copa\",\r\n    \"key\": \"B626B1190C0EA97FDDC51D37C64DFABBA6B7482756782B8E6C20C76EE3500B2B\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wiki/v1/wiki",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wiki",
+								"v1",
+								"wiki"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Coleção de serviços de apoio.<br>"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SERVER",
+			"value": "http://localhost",
+			"type": "default"
+		},
+		{
+			"key": "PORT",
+			"value": "5000",
+			"type": "default"
+		},
+		{
+			"key": "HOST",
+			"value": "{{SERVER}}:{{PORT}}",
+			"type": "default"
+		},
+		{
+			"key": "VERSION",
+			"value": "api/v1"
+		},
+		{
+			"key": "BASE",
+			"value": "articles"
+		},
+		{
+			"key": "BASE PATH",
+			"value": "{{VERSION}}/{{BASE}}"
+		},
+		{
+			"key": "CHAIN",
+			"value": "forum"
+		},
+		{
+			"key": "titleURI",
+			"value": "John%20Backus"
+		},
+		{
+			"key": "postId",
+			"value": "7_D3E65A7835CEF0DE03863875950D4178A2BDA8EEBADDC393B252F3B7EB88AC8B"
+		}
+	]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "wiki-api",
+  "version": "1.0.0",
+  "description": "Atividade 3.6 da Disciplina Tópicos Especiais em Redes de Telecomunicações - Sistemas Peer-to-Peer.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "lint": "eslint",
+    "format": "prettier --single-quote --write *.js"
+  },
+  "author": "Alexis Pinheiro",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "diff-match-patch": "^1.0.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  }
+}
